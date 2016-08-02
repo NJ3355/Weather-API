@@ -19,12 +19,36 @@ function gettingJSON(){
     console.log(url);
 
       $.getJSON(url, function(json){
+
           weather = json;
-          console.log(weather.main.temp);
-          document.write("<img src=" + 'http://openweathermap.org/img/w/'  + weather.weather[0].icon + '.png' + " />");
+          var image =  weather.weather[0].icon;
+          var temp = weather.main.temp;
+          var highLow = [weather.main.temp_min, weather.main.temp_max];
+          var location = weather.name;
+          var description = weather.weather[0].description;
+
+     
+     
+
+
+
+
+          $('#title').html(location);
+          $('#image').append("<img src=" + 'http://openweathermap.org/img/w/'  + image + '.png' + " />");
+          $('#info').prepend("<h2>" + temp + "</h2>")
+          for(var i = 0; i < highLow.length; i++){
+          	$('#temps').append("<li>" + highLow[i] + "</li>");
+          }
+          $('#info').append("<p>" + description + "</p>")
+
+          $('#credentials').hide();
+          
        });
 
  }
+
+
+
 
 
 

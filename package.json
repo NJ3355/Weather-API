@@ -1,0 +1,24 @@
+{
+  "name": "weather-api",
+  "version": "1.0.0",
+  "description": "Simple app to connect to a weather api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NJ3355/Weather-API.git"
+  },
+  "author": "Nick Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NJ3355/Weather-API/issues"
+  },
+  "homepage": "https://github.com/NJ3355/Weather-API#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.3.2"
+  }
+}
