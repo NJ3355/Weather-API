@@ -21,7 +21,7 @@ function gettingJSON(){
       $.getJSON(url, function(json){
           weather = json;
           console.log(weather.main.temp);
-          
+          document.write("<img src=" + 'http://openweathermap.org/img/w/'  + weather.weather[0].icon + '.png' + " />");
        });
 
  }
