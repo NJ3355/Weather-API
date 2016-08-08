@@ -1,15 +1,5 @@
 //Weather API
 
-      var icons = new Skycons(),
-          list  = [
-            "clear-day", "clear-night", "partly-cloudy-day",
-            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-            "fog"
-          ],
-          i;
-      for(i = list.length; i--; )
-        icons.set(list[i], list[i]);
-      icons.play();
 
 var weather;
 
@@ -23,7 +13,7 @@ var zipcode;
 var urlGeo, urlFore;
 var lon = 0;
 var lat = 0;
-
+var loc;
 //Geocoding API
 
 /*var geoAPI = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
@@ -47,7 +37,9 @@ function gettingJSON(){
      success: function(data){
       lat = data.results[0].geometry.bounds.northeast.lat;
       lon = data.results[0].geometry.bounds.northeast.lng;
+      loc = data.results[0].formatted_address;
 
+     
 
            urlFore = api + apiKey + lat + ',' + lon;
 
@@ -59,8 +51,14 @@ function gettingJSON(){
                 var image = data2.currently.icon;
                 var temp = data2.currently.temperature;
                 var summary = data2.currently.summary;
+                console.log(image);
 
-                  
+                $('#title').html(loc);
+                $('#info').append(temp);
+                $('canvas').attr('id', image);
+                skyIcons();
+                $('#credentials').hide();
+
                 }
               });
 
@@ -109,4 +107,15 @@ console.log(json);
 
 
 
-
+function skyIcons() {
+      var icons = new Skycons(),
+          list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+      icons.play();
+  }
