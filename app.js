@@ -51,12 +51,21 @@ function gettingJSON(){
                 var image = data2.currently.icon;
                 var temp = data2.currently.temperature;
                 var summary = data2.currently.summary;
-                console.log(image);
+                var daily = data2.daily.data;
+                console.log(daily.length);
 
                 $('#title').html(loc);
-                $('#info').append(temp);
-                $('canvas').attr('id', image);
+                $('#info').append("<p>" + temp + "<span>&deg;</span></p>");
+                $('#info').append("<p id='summary'>" + summary + "</p>");
+                $('#futureDays').prepend("<hr/>");
+
+                for(var i = 0; i < daily.length - 3; i++){
+                  $('#weekly').append("<li><canvas class=" + daily[i].icon + " width='132' height='132'></canvas></li>");
+                }
+
+                $('.img').attr('class', image);
                 skyIcons();
+
                 $('#credentials').hide();
 
                 }
@@ -115,7 +124,14 @@ function skyIcons() {
             "fog"
           ],
           i;
-      for(i = list.length; i--; )
+     /* for(i = list.length; i--; )
         icons.set(list[i], list[i]);
-      icons.play();
+      icons.play();*/
+      for(i = list.length; i--; ) {
+    var weatherType = list[i],
+        elements = document.getElementsByClassName( weatherType );
+    for (e = elements.length; e--;){
+        icons.set( elements[e], weatherType );
+    }
+}
   }

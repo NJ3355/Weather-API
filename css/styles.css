@@ -8,8 +8,8 @@ body {
 #container {
   margin: auto;
   margin-top: 3em;
-  width: 500px;
-  height: 500px;
+  width: 900px;
+ 
   text-align: center; }
   #container h1 {
     font-family: "Exo 2", sans-serif;
@@ -35,16 +35,30 @@ body {
   #container #info {
     font-family: "Exo 2", sans-serif;
     width: 200px;
-    padding: 2em 0;
+    
     margin: auto; }
     #container #info h2, #container #info p {
-      font-size: 2em; }
-    #container #info p {
-      margin-top: 2em; }
+      font-size: 4em; }
+    #container #info #summary {
+          margin-top: 1em;
+    font-size: 2em;
+       }
     #container #info #temps {
       list-style: none;
-      margin-top: 3em; }
+      margin-top: 1em; }
       #container #info #temps li {
         display: inline;
         margin-left: 1em;
         margin-right: 1em; }
+        #container hr {
+          margin-top: 2em;
+        }
+        #container #futureDays #weekly{
+          width:100%;
+          margin-top:2em;
+        }
+        #container #futureDays #weekly li{
+          list-style: none;
+          display:inline;
+          margin-left:2em;
+        }
