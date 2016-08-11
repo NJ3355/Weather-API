@@ -78,35 +78,6 @@ function gettingJSON(){
 
 
 
-  
-    
-
-     /* $.getJSON(url, function(json){
-console.log(json);
-          weather = json;
-          var image =  weather.weather[0].icon;
-          var temp = weather.main.temp;
-          var highLow = [weather.main.temp_min, weather.main.temp_max];
-          var location = weather.name;
-          var description = weather.weather[0].description;
-
-     
-     
-
-
-
-
-          $('#title').html(location);
-          $('#image').append("<img src=" + 'http://openweathermap.org/img/w/'  + image + '.png' + " />");
-          $('#info').prepend("<h2>" + temp + "</h2>")
-          for(var i = 0; i < highLow.length; i++){
-          	$('#temps').append("<li>" + highLow[i] + "</li>");
-          }
-          $('#info').append("<p>" + description + "</p>")
-
-          $('#credentials').hide();*/
-          
-       //});
 
  }
 
@@ -132,6 +103,7 @@ function skyIcons() {
         elements = document.getElementsByClassName( weatherType );
     for (e = elements.length; e--;){
         icons.set( elements[e], weatherType );
+        icons.play();
     }
 }
   }
