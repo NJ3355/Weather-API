@@ -1,49 +1,83 @@
+//Weather API
+
+
 var weather;
 
 var text = document.getElementById("zipcode");
 var button = document.getElementById("submit");
 button.addEventListener("click", gettingJSON);
 
-var api = 'http://api.openweathermap.org/data/2.5/weather?';
-var apiKey = '&appid=5ffa7f2c54d5a1333c53aa49a830fa30';
+var api = 'https://api.forecast.io/forecast/';
+var apiKey = '1e64d3848db562fa6695bffbc65fc1ef/';
 var zipcode; 
-var units = '&units=imperial'
-var url;
+var urlGeo, urlFore;
+var lon = 0;
+var lat = 0;
+var loc;
+//Geocoding API
+
+/*var geoAPI = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
+var geoKey = 'AIzaSyBngpUQb0BvvotBHJ3eLG7ldtnXxlsapaY';
+var geoURL = geoAPI + geoKey;*/
+
 
 
 
    
 function gettingJSON(){
-    zipcode = 'zip=' + text.value + ',us';
-    url = api + zipcode + apiKey + units;
-    console.log(url);
+    zipcode = text.value;
+    
+    
 
-      $.getJSON(url, function(json){
+  urlGeo = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode;
 
-          weather = json;
-          var image =  weather.weather[0].icon;
-          var temp = weather.main.temp;
-          var highLow = [weather.main.temp_min, weather.main.temp_max];
-          var location = weather.name;
-          var description = weather.weather[0].description;
+ $.ajax({
+     url: urlGeo,
+     dataType: "json",
+     success: function(data){
+      lat = data.results[0].geometry.bounds.northeast.lat;
+      lon = data.results[0].geometry.bounds.northeast.lng;
+      loc = data.results[0].formatted_address;
 
      
-     
+
+           urlFore = api + apiKey + lat + ',' + lon;
+
+           $.ajax({
+                url: urlFore,
+                dataType: "jsonp",
+                success: function(data2){
+                  
+                var image = data2.currently.icon;
+                var temp = data2.currently.temperature;
+                var summary = data2.currently.summary;
+                var daily = data2.daily.data;
+                console.log(daily.length);
+
+                $('#title').html(loc);
+                $('#info').append("<p>" + temp + "<span>&deg;</span></p>");
+                $('#info').append("<p id='summary'>" + summary + "</p>");
+                $('#futureDays').prepend("<hr/>");
+
+                for(var i = 0; i < daily.length - 3; i++){
+                  $('#weekly').append("<li><canvas class=" + daily[i].icon + " width='132' height='132'></canvas></li>");
+                }
+
+                $('.img').attr('class', image);
+                skyIcons();
+
+                $('#credentials').hide();
+
+                }
+              });
+
+        
+      }
+    });
 
 
 
 
-          $('#title').html(location);
-          $('#image').append("<img src=" + 'http://openweathermap.org/img/w/'  + image + '.png' + " />");
-          $('#info').prepend("<h2>" + temp + "</h2>")
-          for(var i = 0; i < highLow.length; i++){
-          	$('#temps').append("<li>" + highLow[i] + "</li>");
-          }
-          $('#info').append("<p>" + description + "</p>")
-
-          $('#credentials').hide();
-          
-       });
 
  }
 
@@ -53,4 +87,23 @@ function gettingJSON(){
 
 
 
-
+function skyIcons() {
+      var icons = new Skycons(),
+          list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+     /* for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+      icons.play();*/
+      for(i = list.length; i--; ) {
+    var weatherType = list[i],
+        elements = document.getElementsByClassName( weatherType );
+    for (e = elements.length; e--;){
+        icons.set( elements[e], weatherType );
+        icons.play();
+    }
+}
+  }
