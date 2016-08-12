@@ -57,10 +57,12 @@ function gettingJSON(){
                 $('#title').html(loc);
                 $('#info').append("<p>" + temp + "<span>&deg;</span></p>");
                 $('#info').append("<p id='summary'>" + summary + "</p>");
+                $('#futureDays').prepend("<h2>5-Day Forecast</h2>");
                 $('#futureDays').prepend("<hr/>");
 
                 for(var i = 0; i < daily.length - 3; i++){
                   $('#weekly').append("<li><canvas class=" + daily[i].icon + " width='132' height='132'></canvas></li>");
+
                 }
 
                 $('.img').attr('class', image);

@@ -12,6 +12,12 @@ background: -ms-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(33,180,226,1)
 background: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 52%, rgba(113,206,239,1) 95%, rgba(183,222,237,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#b7deed', GradientType=1 ); }
 
+h2 {
+  font-family: "Exo 2", sans-serif;
+  margin-top: 1em;
+}
+
+
 #container {
   margin: auto;
   margin-top: 3em;
