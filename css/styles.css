@@ -80,8 +80,8 @@ h2 {
 /*MEDIA QUERIES*/
 
 
-@media screen and (max-width: 668px) {
-    body {
-        background-color: lightgreen;
-    }
+@media screen and (max-width: 768px) {
+   #container #futureDays #weekly li {
+    display: block;
+            }
 }
