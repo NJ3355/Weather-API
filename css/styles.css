@@ -21,14 +21,14 @@ h2 {
 #container {
   margin: auto;
   margin-top: 3em;
-  width: 900px;
+ 
  
   text-align: center; }
   #container h1 {
     font-family: "Exo 2", sans-serif;
     font-size: 4em; }
   #container #credentials {
-    margin-top: 40%; }
+    margin-top: 30%; }
     #container #credentials button, #container #credentials input[type="text"] {
       background: #fff;
       padding: 10px;
@@ -75,3 +75,13 @@ h2 {
           display:inline;
           margin-left:2em;
         }
+
+
+/*MEDIA QUERIES*/
+
+
+@media screen and (max-width: 668px) {
+    body {
+        background-color: lightgreen;
+    }
+}
